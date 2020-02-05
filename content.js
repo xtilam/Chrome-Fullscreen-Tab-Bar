@@ -53,3 +53,9 @@ window.addEventListener('keyup', function(e){
 	}
 } );
 
+const keyM = 77;
+window.addEventListener('keyup', function(e){
+    if(e.which === keyM && e.ctrlKey){
+        chrome.tabs.executeScript({ code: 'hideBar.hideAction();' })
+    }
+} );
