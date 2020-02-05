@@ -18,14 +18,14 @@ const hideBar = {
 	hideStatus: false,
 	unHideAfterClickStatus: false,
 	hideAction: function (){
-		if(this.hideStatus){
+		if(this.hideStatus || this.unHideAfterClickStatus){
 			tabs.style.display = 'unset';
 			this.hideStatus = false;
 		}else{
 			this.hideStatus = true;
 			tabs.style.display = 'none';
 		};
-		if(unHideAfterClickStatus){
+		if(this.unHideAfterClickStatus){
 			document.removeEventListener('click', this.unHideAfterClickAction.event);
 			this.unHideAfterClickStatus = false;
 		}
@@ -51,11 +51,4 @@ window.addEventListener('keyup', function(e){
 	if(e.which === keyM && e.ctrlKey){
 		hideBar.hideAction();
 	}
-} );
-
-const keyM = 77;
-window.addEventListener('keyup', function(e){
-    if(e.which === keyM && e.ctrlKey){
-        chrome.tabs.executeScript({ code: 'hideBar.hideAction();' })
-    }
 } );
